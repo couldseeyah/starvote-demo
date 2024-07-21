@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -40,3 +40,67 @@
 .read-the-docs {
   color: #888;
 }
+
+.ballot-container {
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+
+.ballot-option {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.ballot-option input {
+  margin-right: 0.5rem;
+}
+
+.ballot-option span {
+  margin-right: 0.5rem;
+}
+
+.selected-vote {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.voter-container {
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  max-width: 200px;
+  margin: 5% auto;
+  background-color: #f9f9f9;
+}
+
+.grey-divs-container {
+  display: flex;
+  gap: 1rem;
+  margin: 20%;
+}
+
+.grey-div-column {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 80px; /* Adjust width to match grey-div width */
+  height: 200px; /* Adjust height based on number of divs and their overlap */
+  /* align-items: center; */
+  /* position: relative; */
+}
+
+.grey-div {
+  width: 50px;
+  height: 50px;
+  background-color: #e8e8e8;
+  border-radius: 10%;
+  border: 2px solid #ccc;
+  margin: 0; 
+}
+
+

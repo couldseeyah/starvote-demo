@@ -1,9 +1,18 @@
+import Ballot from './components/Ballot';
+import VoterNumber from './components/VoterNumber';
+
 export default function VotingDemo({ setStart, setNext }) {
     return (
         <>
-            <p>Voting demo</p>
+            <h1>Voting demo</h1>
             <p>(page 1)</p>
-            <div className="card">
+            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                <VoterNumber />
+                <div>
+                    <p>placeholder slay</p>
+                </div>
+            </div>
+            <div className="card" style={{ marginLeft: '2rem' }}>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <button onClick={() => setStart(false)}>
                         Back
@@ -14,5 +23,5 @@ export default function VotingDemo({ setStart, setNext }) {
                 </div>
             </div>
         </>
-    )
+    );
 }
