@@ -6,14 +6,21 @@ export default function Tally({getSum}) {
     const total = getSum(encryptedVotes)
 
     return (
-        <>
-            <h2>Polling Station: XYZ</h2>
-            <ul className='no-bullets'>
-                {encryptedVotes.map((vote, index) => ( 
+        <>  
+           <div className="custom-header">
+                <h2>Polling Station: XYZ</h2>
+            </div>
+            <ul className='no-bullets large-font-list'>
+                {encryptedVotes.map((vote, index) => (
                     <li key={index}>{vote.encryption}</li>
-                ))}     
+                ))}
             </ul>
-            <h3>Total: {total} RND: 5</h3>
+            <div className="custom-header">
+                <h2>Vote Tally</h2>
+            </div>
+            <div className="custom-footer">
+                <h3 className='large-font'>Total: {total} RND: 5</h3>
+            </div>
         </>
     )
 }

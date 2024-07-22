@@ -158,15 +158,41 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+.large-font-list {
+  font-size: 2rem; 
+  margin-bottom: 10%;
+}
+.large-font{
+  font-size: 2rem;
+}
 .custom-card {
-  height: 100%;
-  max-width: 600px; /* Different max-width */
+  min-height: 70vh;
+  margin-inline: 5%;
+  max-width: 100%; /* Different max-width */
   padding: 30px; /* Different padding */
   border: 2px solid #aaa; /* Different border */
   border-radius: 10px; /* Different border-radius */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Different box-shadow */
 }
 
+.custom-header {
+  background-color: #f8f9fa; /* Light grey background */
+  padding: 10px;
+  border-radius: 10px 10px 0 0; /* Rounded corners at the top */
+  margin-bottom: 5%;
+}
+
+.custom-footer {
+  /* margin-top: auto; Push to bottom */
+  padding: 2px;
+}
+
+.button-container {
+  margin-top: auto; /* Push to bottom */
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
 .container-fluid {
     min-height: 100vh;
     display: flex;

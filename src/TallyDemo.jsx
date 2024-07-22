@@ -16,7 +16,7 @@ export default function TallyDemo({ setStart, setNext }) {
 
     return (
         <div className="container-fluid">
-            <h1 className="text-center my-4">ECP Bulletin Board</h1>
+            <h1 className="text-center mt-2">ECP Bulletin Board</h1>
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
                     <div className="card custom-card p-3">
@@ -29,7 +29,7 @@ export default function TallyDemo({ setStart, setNext }) {
                     </div>
                 </div>
             </div>
-            <div className="d-flex justify-content-center mt-4">
+            <div className="d-flex justify-content-center">
                 <button className="btn btn-dark mx-2" onClick={() => { setNext(false); setStart(true); }}>
                     Back
                 </button>
