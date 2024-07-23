@@ -14,18 +14,21 @@ function getSum(encryptedVotes){
 
 export default function TallyDemo({ setStart, setNext }) {
 
+    const encryptedVotes = [{symbol: 'xyz', encryption: '12345'}, {symbol: 'abd', encryption: '78901'}, {symbol: 'abd', encryption: '78901'},{symbol: 'abd', encryption: '78901'}]
+    const total = getSum(encryptedVotes)
+
     return (
         <div className="container-fluid">
             <h1 className="text-center mt-2">ECP Bulletin Board</h1>
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
-                    <div className="card custom-card p-3">
-                        <Tally getSum={getSum} />
+                    <div className="card custom-card-right p-3">
+                        <Tally total={total} encryptedVotes={encryptedVotes} />
                     </div>
                 </div>
                 <div className="col-md-6 d-flex justify-content-center align-items-center">
                     <div className="card custom-card p-3">
-                        <VerifyTally getSum={getSum}/>
+                        <VerifyTally total={total} encryptedVotes = {encryptedVotes} getSum={getSum}/>
                     </div>
                 </div>
             </div>
