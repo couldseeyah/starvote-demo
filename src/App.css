@@ -1,40 +1,121 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
+  /* padding: 1rem;  */
   text-align: center;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .logo {
-  height: 6em;
+  height: 10em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #fbff00dd);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #fbff00dd);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.header {
+  padding: 10px 20px; 
+  text-align: center;
+  width: 85vw; 
+  box-sizing: border-box; 
+  position: relative
+}
+
+/* Container for flexboxes */
+.row {
+  width: 85vw;
+  display: -webkit-flex;
+  display: flex;
+  padding: 10px; 
+  margin: 10px 0; 
+}
+
+.rowcontainer {
+  width: 40vw;
+  display: flex;
+}
+
+/* Create three unequal columns that sits next to each other */
+.column {
+  padding: 10px;
+  margin: 10px; /* Add this line */
+}
+
+/* Left and right column */
+.column.side {
+   -webkit-flex: 1;
+   -ms-flex: 1;
+   flex: 1;
+}
+
+/* Middle column */
+.column.middle {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+
+/* Style the footer */
+.footer {
+  text-align: center;
+  width: 85vw; /* Make the footer take the full width of the screen */
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+.button-1 {
+  background-color: #FFC738;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.card {
-  padding: 2em;
+.button-1:hover,
+.button-1:focus {
+  background-color: #FFB122;
 }
 
 .read-the-docs {
@@ -42,11 +123,9 @@
 }
 
 .ballot-container {
-  padding: 1rem;
   border: 2px solid #ccc;
   border-radius: 8px;
-  max-width: 400px;
-  margin: 0 auto;
+  margin: 2%;
   background-color: #f9f9f9;
 }
 
@@ -81,7 +160,7 @@
 .grey-divs-container {
   display: flex;
   gap: 1rem;
-  margin: 20%;
+  margin: 10%;
 }
 
 .grey-div-column {
@@ -103,4 +182,32 @@
   margin: 0; 
 }
 
+.ballot-container {
+  padding: 10px;
+  width: 15vw;
+}
 
+.clipboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.clipboard-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.encryption {
+  flex-grow: 1;
+}
+
+.qr-code {
+  margin-left: 10px;
+  font-size: 20px;
+}

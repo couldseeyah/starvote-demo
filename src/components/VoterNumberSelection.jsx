@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import '../App.css';
-import Ballot from './Ballot';
 import BallotList from './BallotList';
 
-export default function VoterNumber() {
-    const [voterNumber, setVoterNumber] = useState('');
+export default function VoterNumberSelection({voterNumber, setVoterNumber, encryptionList}) {
 
     const handleInputChange = (event) => {
+        if (encryptionList.length > 0){
+            alert('You cannot change the number of voters after voting has started');
+            return;
+        }
         setVoterNumber(event.target.value);
     };
 
@@ -16,20 +18,19 @@ export default function VoterNumber() {
                 <label htmlFor="voter-number">Enter Voter Number:</label>
                 <input
                     type="number"
-                    min="0"
+                    min="1"
                     max="10"
                     id="voter-number"
                     value={voterNumber}
                     onChange={handleInputChange}
-                    placeholder="Voter Number"
+                    placeholder="1"
                 />
                 <div>
-                    Current Voter Number: {voterNumber}
+                    Number of Voters: {voterNumber}
                 </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                <BallotList voterNumber={voterNumber-1} />
-                <Ballot />
+                <BallotList voterNumber={voterNumber} />
             </div>
         </div>
     );
