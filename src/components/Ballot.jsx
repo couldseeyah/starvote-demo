@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { encryptArray, homomorphicAdd } from './apiService';
 import '../App.css'
+
 
 export default function Ballot({ currentBallotID, setCurrentBallotID, setHashList, voterNumber }) {
     const [vote, setVote] = useState(null);
