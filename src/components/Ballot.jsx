@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css'
 
-export default function Ballot({ currentBallotID, setCurrentBallotID, setEncryptionList, voterNumber }) {
+export default function Ballot({ currentBallotID, setCurrentBallotID, setHashList, voterNumber }) {
     const [vote, setVote] = useState(null);
     const [encryption, setEncryption] = useState('');
 
@@ -23,7 +23,7 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setEncrypt
 
     function castVote() {
         if (voterNumber >= currentBallotID) {
-            setEncryptionList(encryptionList => [...encryptionList, encryption]);
+            setHashList(hashList => [...hashList, encryption]);
             setCurrentBallotID(currentBallotID + 1);
         }
         if (voterNumber > currentBallotID) {

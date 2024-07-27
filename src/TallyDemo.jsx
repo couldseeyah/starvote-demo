@@ -12,7 +12,7 @@ function getSum(encryptedVotes){
     return sum;
 }
 
-export default function TallyDemo({ setStart, setNext }) {
+export default function TallyDemo({ setStart, setNext, hashList }) {
 
     const encryptedVotes = [{symbol: 'xyz', encryption: '12345'}, {symbol: 'abd', encryption: '78901'}, {symbol: 'abd', encryption: '78901'},{symbol: 'abd', encryption: '78901'}]
     const total = getSum(encryptedVotes)

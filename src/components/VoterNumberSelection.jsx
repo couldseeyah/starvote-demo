@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import '../App.css';
 import BallotList from './BallotList';
 
-export default function VoterNumberSelection({voterNumber, setVoterNumber, encryptionList}) {
+export default function VoterNumberSelection({voterNumber, setVoterNumber, hashList}) {
 
     const handleInputChange = (event) => {
-        if (encryptionList.length > 0){
+        if (hashList.length > 0){
             alert('You cannot change the number of voters after voting has started');
             return;
         }

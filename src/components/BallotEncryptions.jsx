@@ -1,15 +1,15 @@
 import '../App.css';
 import QRCode from '../assets/qr_code.svg';
 
-export default function BallotEncryptions({ encryptionList }) {
+export default function BallotEncryptions({ hashList }) {
     return (
         <>
             <div className='ballot-container'>
                 <h4>Ballot Receipts</h4>
                 <div className='clipboard-container'>
-                    {encryptionList.map((encryption, index) => (
+                    {hashList.map((hash, index) => (
                         <div key={index} className='clipboard-item'>
-                            <div className='encryption'>{encryption}</div>
+                            <div className='encryption'>{hash}</div>
                             <div style={{ height: '2rem', width: '2rem' }}>
                                 <img src={QRCode} alt="qr code" />
                             </div>

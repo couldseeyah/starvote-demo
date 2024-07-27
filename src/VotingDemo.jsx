@@ -1,12 +1,16 @@
 import Ballot from './components/Ballot';
 import VoterNumberSelection from './components/VoterNumberSelection';
 import BallotEncryptions from './components/BallotEncryptions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function VotingDemo({ setStart, setNext }) {
+export default function VotingDemo({ setStart, setNext, hashList, setHashList }) {
     const [currentBallotID, setCurrentBallotID] = useState(1);
     const [voterNumber, setVoterNumber] = useState(1);
-    const [encryptionList, setEncryptionList] = useState([]);
+
+    useEffect
+        (() => {
+            setHashList([]);
+        }, []);
 
     return (
         <>
@@ -18,16 +22,16 @@ export default function VotingDemo({ setStart, setNext }) {
                 <div className="column side" style={{ backgroundColor: "#aaa;" }}>
                     <VoterNumberSelection voterNumber={voterNumber}
                         setVoterNumber={setVoterNumber}
-                        encryptionList={encryptionList} />
+                        hashList={hashList} />
                 </div>
                 <div className="column middle" style={{ backgroundColor: "#bbb;" }}>
                     <Ballot currentBallotID={currentBallotID}
                         setCurrentBallotID={setCurrentBallotID}
-                        setEncryptionList={setEncryptionList}
+                        setHashList={setHashList}
                         voterNumber={voterNumber} />
                 </div>
                 <div className="column side" style={{ backgroundColor: "#ccc;" }}>
-                    <BallotEncryptions encryptionList={encryptionList} />
+                    <BallotEncryptions hashList={hashList} />
                 </div>
             </div>
 
