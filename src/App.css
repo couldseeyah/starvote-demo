@@ -214,7 +214,8 @@ body {
 }
 
 .subtitle {
-  margin-bottom: 20px;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .sum-button {
@@ -237,15 +238,36 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.large-font-list {
-  font-size: 2rem; 
-  margin-bottom: 10%;
+.card-total{
+  width: 85%;
+  margin: auto;
+  max-width: 500px;
+  margin-top: 2%;
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #f5f5f5;
 }
+
+.large-font-list {
+  font-size: 1.5rem; 
+  margin-inline: 10%;
+}
+
+.tally-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  margin-bottom: 3%;
+}
+
 .large-font{
   font-size: 2rem;
 }
 .custom-card-right {
-  min-height: 70vh;
+  min-height: 60vh;
   margin-inline: 5%;
   /* min-width: 100%; */
   max-width: 100%; /* Different max-width */
@@ -268,7 +290,6 @@ body {
   background-color: #f8f9fa; /* Light grey background */
   padding: 10px;
   border-radius: 10px 10px 0 0; /* Rounded corners at the top */
-  margin-bottom: 5%;
 }
 
 .custom-footer {

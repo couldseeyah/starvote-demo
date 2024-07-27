@@ -19,7 +19,7 @@ export default function TallyDemo({ setStart, setNext }) {
 
     return (
         <div className="container-fluid">
-            <h1 className="text-center mt-2">ECP Bulletin Board</h1>
+            <h1 className="text-center mt-3">ECP Bulletin Board</h1>
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
                     <div className="card custom-card-right p-3">
