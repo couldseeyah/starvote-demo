@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { encryptArray, homomorphicAdd } from './apiService';
 import '../App.css'
+import { encryptArray } from '../../apiService';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 export default function Ballot({ currentBallotID, setCurrentBallotID, setHashList, voterNumber }) {
     const [vote, setVote] = useState(null);
     const [encryption, setEncryption] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const options = [
-        { name: 'Tom', symbol: '🐤', vector: '100' },
-        { name: 'Mary', symbol: '☂️', vector: '010' },
-        { name: 'Sue', symbol: '✂️', vector: '001' },
+        { name: 'Tom', symbol: '🐤', vector: [1, 0, 0] },
+        { name: 'Mary', symbol: '☂️', vector: [0, 1, 0] },
+        { name: 'Sue', symbol: '✂️', vector: [0, 0, 1] },
     ];
 
-    function getEncryption() {
-        let encryption = "";
-        for (let i = 0; i < 7; i++) {
-            let slay = Math.floor(Math.random() * (15 - 0 + 1));
-            let hexString = slay.toString(16);
-            encryption = encryption + hexString
+    const getEncryption = async () => {
+        if (vote) {
+            try {
+                const array = vote.vector;  // Provide the appropriate array data
+                const response = await encryptArray(array);
+                const receivedEncryption = response.hash;
+                if (vote) {
+                    setEncryption(receivedEncryption.slice(0,16));
+                }
+            } catch (error) {
+                console.error("Error fetching encryption:", error);
+            }
         }
-        vote && setEncryption(encryption)
-    }
+    };
 
     function castVote() {
         if (voterNumber >= currentBallotID) {
-            setHashList(hashList => [...hashList, encryption]);
+            const encryptionObject = {symbol: vote.symbol, hash: encryption };
+            setHashList(hashList => [...hashList, encryptionObject]);
             setCurrentBallotID(currentBallotID + 1);
         }
         if (voterNumber > currentBallotID) {
@@ -35,7 +43,13 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
     }
 
     useEffect(() => {
-        getEncryption();
+        const fetchEncryption = async () => {
+            setLoading(true);
+            await getEncryption();
+            setLoading(false);
+        };
+
+        fetchEncryption();
     }, [vote]);
 
     return (
@@ -55,20 +69,24 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
                             />
                             <span>{option.name}</span>
                             <span>{option.symbol}</span>
-                            <span>({option.vector})</span>
+                            <span>({option.vector.toString()})</span>
                         </div>
                     ))}
                     <div className="selected-vote">
                         Selected Vote: {vote?.name}
                     </div>
-                    <h6>Encryption: {encryption}</h6>
+                    <h6>Encryption:</h6>
+                    <h6 style={{ fontSize: '1em' }}>{loading ? <Spinner animation="border" variant="warning"/> :
+                        encryption}</h6>
                     <h6>Ballot ID: {(currentBallotID > voterNumber) ? currentBallotID - 1 : currentBallotID}</h6>
-                    <button onClick={castVote} disabled={!vote}>Cast Vote</button>
+                    <button style={{'border':'1px solid grey' }} onClick={castVote} disabled={!vote}>Cast Vote</button>
                 </div>
                 <div className='ballot-container column side'>
                     <h4>Recorded Vote</h4>
                     {vote && <p>{vote?.name + "     " + vote?.symbol}</p>}
-                    <h6>Encryption: {encryption}</h6>
+                    <h6>Encryption:</h6>
+                    <h6 style={{ fontSize: '1em' }}>{loading ? <Spinner animation="border" variant="warning" /> :
+                        encryption}</h6>
                     <h6>Ballot ID: {(currentBallotID > voterNumber) ? currentBallotID - 1 : currentBallotID}</h6>
                 </div>
             </div>

@@ -15,22 +15,22 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList })
     return (
         <>
             <div className="header">
-                <h1>Voting Demo</h1>
+                <h1>Voting at Polling Station XYZ</h1>
             </div>
 
             <div className="row">
-                <div className="column side" style={{ backgroundColor: "#aaa;" }}>
+                <div className="column side" style={{ backgroundColor: "#aaa" }}>
                     <VoterNumberSelection voterNumber={voterNumber}
                         setVoterNumber={setVoterNumber}
                         hashList={hashList} />
                 </div>
-                <div className="column middle" style={{ backgroundColor: "#bbb;" }}>
+                <div className="column middle" style={{ backgroundColor: "#bbb" }}>
                     <Ballot currentBallotID={currentBallotID}
                         setCurrentBallotID={setCurrentBallotID}
                         setHashList={setHashList}
                         voterNumber={voterNumber} />
                 </div>
-                <div className="column side" style={{ backgroundColor: "#ccc;" }}>
+                <div className="column side" style={{ backgroundColor: "#ccc" }}>
                     <BallotEncryptions hashList={hashList} />
                 </div>
             </div>
@@ -40,7 +40,7 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList })
                     <button onClick={() => setStart(false)}>
                         Back
                     </button>
-                    <button onClick={() => setNext(true)} disabled={(encryptionList.length < voterNumber)}>
+                    <button onClick={() => setNext(true)} disabled={(hashList.length < voterNumber)}>
                         Next
                     </button>
                 </div>

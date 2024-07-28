@@ -13,7 +13,7 @@ export default function Home({ start, setStart }) {
       </div>
 
       <div className="row">
-        <div className="column middle" style={{ backgroundColor: "#bbb;" }}>
+        <div className="column middle" style={{ backgroundColor: "#bbb" }}>
           <div className="card">
             <button className="button-1" onClick={() => setStart(true)}>
               {start ? 'Stop' : 'Start'}

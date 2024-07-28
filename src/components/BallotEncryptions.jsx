@@ -7,9 +7,9 @@ export default function BallotEncryptions({ hashList }) {
             <div className='ballot-container'>
                 <h4>Ballot Receipts</h4>
                 <div className='clipboard-container'>
-                    {hashList.map((hash, index) => (
+                    {hashList.map((item, index) => (
                         <div key={index} className='clipboard-item'>
-                            <div className='encryption'>{hash}</div>
+                            <div className='encryption'>{item.hash}</div>
                             <div style={{ height: '2rem', width: '2rem' }}>
                                 <img src={QRCode} alt="qr code" />
                             </div>

@@ -6,7 +6,7 @@ export default function VoterNumberSelection({voterNumber, setVoterNumber, hashL
 
     const handleInputChange = (event) => {
         if (hashList.length > 0){
-            alert('You cannot change the number of voters after voting has started');
+            alert('You cannot change the number of voters after voting has started.');
             return;
         }
         setVoterNumber(event.target.value);

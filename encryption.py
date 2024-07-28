@@ -3,7 +3,6 @@ import numpy as np
 import base64
 import hashlib
 
-
 def add_elementwise(array1, array2):
     return np.add(array1, array2)
 
@@ -22,9 +21,11 @@ def compiler_setup():
     circuit.keygen()
     return circuit
 
-def encrypt_and_hash(input_array, circuit):
+def encrypt_and_hash(input_array, circuit, encrypted_objects):
 
-    encrypted_array = circuit.encrypt(input_array, np.array([0, 0, 0]))
+    encrypted_array = circuit.encrypt(np.array(input_array), np.array([0, 0, 0]))
+
+    encrypted_objects.append(encrypted_array[0])
     
     # Serialize the encrypted data
     serialized_data = encrypted_array[0].serialize()
@@ -32,13 +33,12 @@ def encrypt_and_hash(input_array, circuit):
     # Generate a hash of the serialized data
     hash_object = hashlib.sha256(serialized_data)
     hash_hex = hash_object.hexdigest()
-    print(f"Encrypted data hash for array: {hash_hex}")
 
-    return encrypted_array, hash_hex
+    return hash_hex
 
 #performs homomorphic addition and returns result
-def homomorphic_addition(ciphertext, circuit):
-
+def homomorphic_addition(circuit, encrypted_objects):
+    ciphertext = encrypted_objects
     #take the first two arrays and add them. loop until all arrays are added
     for i in range(len(ciphertext) - 1):
         encrypted_result = circuit.run(ciphertext[i], ciphertext[i + 1])
@@ -47,6 +47,7 @@ def homomorphic_addition(ciphertext, circuit):
     # Decrypt the result
     result = circuit.decrypt(encrypted_result)
     print(f"Decrypted result: {result}")
+    encrypted_objects.clear()
     return result
 
 

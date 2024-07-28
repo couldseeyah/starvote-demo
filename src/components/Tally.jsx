@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import '../App.css'
 
 
-export default function Tally({total, encryptedVotes}) {
-    const voteTotal = total;
+export default function Tally({total, hashList}) {
 
     return (
         <>  
@@ -12,9 +11,9 @@ export default function Tally({total, encryptedVotes}) {
             </div>
             <h4 style={{marginBottom: '3%', marginTop: '2%'}}>Encrypted Votes</h4>
             <ul className='no-bullets large-font-list'>
-                {encryptedVotes.map((vote, index) => (
+                {hashList.map((item, index) => (
                     <div class='tally-item'>
-                        <li key={index}>{vote.encryption}</li>
+                        <li key={index}>{item.symbol + "   " + item.hash}</li>
                     </div> 
                 ))}
             </ul>
@@ -22,7 +21,7 @@ export default function Tally({total, encryptedVotes}) {
                 <h2>Vote Tally</h2>
             </div>
             <div className="custom-footer">
-                <h3 className='large-font' style={{marginTop: '2%'}}>Total: {voteTotal} RND: 5</h3>
+                <h3 className='large-font' style={{marginTop: '2%'}}>Total: {total} RND: 5</h3>
             </div>
         </>
     )

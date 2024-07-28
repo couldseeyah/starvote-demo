@@ -14,8 +14,9 @@ function getSum(encryptedVotes){
 
 export default function TallyDemo({ setStart, setNext, hashList }) {
 
-    const encryptedVotes = [{symbol: 'xyz', encryption: '12345'}, {symbol: 'abd', encryption: '78901'}, {symbol: 'abd', encryption: '78901'},{symbol: 'abd', encryption: '78901'}]
-    const total = getSum(encryptedVotes)
+    
+    // const total = getSum(encryptedVotes)
+    const total = 18;
 
     return (
         <div className="container-fluid">
@@ -23,12 +24,12 @@ export default function TallyDemo({ setStart, setNext, hashList }) {
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
                     <div className="card custom-card-right p-3">
-                        <Tally total={total} encryptedVotes={encryptedVotes} />
+                        <Tally total={total} hashList={hashList} />
                     </div>
                 </div>
                 <div className="col-md-6 d-flex justify-content-center align-items-center">
                     <div className="card custom-card p-3">
-                        <VerifyTally total={total} encryptedVotes = {encryptedVotes} getSum={getSum}/>
+                        <VerifyTally total={total} hashList = {hashList} getSum={getSum}/>
                     </div>
                 </div>
             </div>

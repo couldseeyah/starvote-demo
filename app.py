@@ -1,7 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from encryption import encrypt_and_hash, homomorphic_addition, compiler_setup
 
 app = Flask(__name__)
+CORS(app, origins=['http://localhost:5173'])
+
+#global variable for encrypted objects
+encrypted_objects = []
 
 circuit = compiler_setup()
 
@@ -9,14 +14,12 @@ circuit = compiler_setup()
 def encrypt():
     data = request.json
     array = data['array']
-    encrypted_array, hash = encrypt_and_hash(array, circuit)
-    return jsonify({'encrypted_array': encrypted_array, 'hash': hash})
+    hash = encrypt_and_hash(array, circuit, encrypted_objects)
+    return jsonify({'hash': hash})
 
-@app.route('/homomorphic_add', methods=['POST'])
+@app.route('/homomorphic_add', methods=['GET'])
 def add():
-    data = request.json
-    encrypted_arrays = data['encrypted_arrays']
-    result = homomorphic_addition(encrypted_arrays, circuit)
+    result = homomorphic_addition(circuit, encrypted_objects)
     return jsonify({'result': result})
 
 if __name__ == '__main__':
