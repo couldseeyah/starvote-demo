@@ -6,14 +6,14 @@ import Spinner from 'react-bootstrap/Spinner';
 
 export default function VerifyTally({ total }) {
 
-    const [voteTotal, setVoteTotal] = useState('0');
+    const [calculatedVoteTotal, setCalculatedVoteTotal] = useState('0');
     const [verifyState, setVerifyState] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const getSum = async () => {
         try {
             const response = await homomorphicAdd(); 
-            return response.result;
+            return response;
         } catch (error) {
             console.error("Error fetching homomorphic addition result:", error);
             return null; // Return null or handle the error appropriately
@@ -25,10 +25,9 @@ export default function VerifyTally({ total }) {
             setLoading(true);
             const result = await getSum();
             if (result !== null) {
-                setVoteTotal(result);
+                setCalculatedVoteTotal(result);
             }
-            // setVerifyState(true);
-            console.log('result:' + result);
+            setVerifyState(true);
             setLoading(false);
         };
 
@@ -44,10 +43,10 @@ export default function VerifyTally({ total }) {
                 <h4 className="subtitle">To verify the total vote count, click on the button below. </h4>
             </div>
             <div className="button-container">
-                <button className="btn btn-dark" onClick={handleClick}>Verify Total</button>
+                <button className="btn btn-dark" onClick={handleClick} disabled={verifyState}>Verify Total</button>
             </div>
             <div>
-                {verifyState && <VerificationBox total={voteTotal} />}
+                {verifyState && <VerificationBox total={calculatedVoteTotal} />}
             </div>
         </div>
     );

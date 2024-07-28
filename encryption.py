@@ -24,11 +24,11 @@ def compiler_setup():
 def encrypt_and_hash(input_array, circuit, encrypted_objects):
 
     encrypted_array = circuit.encrypt(np.array(input_array), np.array([0, 0, 0]))
-
-    encrypted_objects.append(encrypted_array[0])
     
     # Serialize the encrypted data
     serialized_data = encrypted_array[0].serialize()
+
+    encrypted_objects.append(serialized_data)
 
     # Generate a hash of the serialized data
     hash_object = hashlib.sha256(serialized_data)
@@ -38,17 +38,19 @@ def encrypt_and_hash(input_array, circuit, encrypted_objects):
 
 #performs homomorphic addition and returns result
 def homomorphic_addition(circuit, encrypted_objects):
-    ciphertext = encrypted_objects
+
+    ciphertext = [fhe.Value.deserialize(obj) for obj in encrypted_objects]
+
     #take the first two arrays and add them. loop until all arrays are added
     for i in range(len(ciphertext) - 1):
         encrypted_result = circuit.run(ciphertext[i], ciphertext[i + 1])
         ciphertext[i + 1] = encrypted_result
 
     # Decrypt the result
-    result = circuit.decrypt(encrypted_result)
-    print(f"Decrypted result: {result}")
-    encrypted_objects.clear()
-    return result
+    result = circuit.decrypt(ciphertext[-1])
+    resultList = result.tolist()
+    resultString = ' '.join([str(elem) for elem in resultList])
+    return resultString
 
 
 #Running

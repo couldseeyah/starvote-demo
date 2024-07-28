@@ -20,7 +20,8 @@ def encrypt():
 @app.route('/homomorphic_add', methods=['GET'])
 def add():
     result = homomorphic_addition(circuit, encrypted_objects)
-    return jsonify({'result': result})
+    encrypted_objects.clear()
+    return jsonify({'result': result}) 
 
 if __name__ == '__main__':
     app.run(debug=True)
