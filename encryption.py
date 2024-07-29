@@ -33,7 +33,7 @@ def encrypt_and_hash(input_array, circuit, encrypted_objects):
     # Generate a hash of the serialized data
     hash_object = hashlib.sha256(serialized_data)
     hash_hex = hash_object.hexdigest()
-
+    print("Encrypted objects inside encrypt and hash func: ", len(encrypted_objects))
     return hash_hex
 
 #performs homomorphic addition and returns result
@@ -46,8 +46,10 @@ def homomorphic_addition(circuit, encrypted_objects):
         encrypted_result = circuit.run(ciphertext[i], ciphertext[i + 1])
         ciphertext[i + 1] = encrypted_result
 
+    print("After addition: ", ciphertext)
     # Decrypt the result
     result = circuit.decrypt(ciphertext[-1])
+    print("Result of homomorphic addition: ", result)
     resultList = result.tolist()
     resultString = ' '.join([str(elem) for elem in resultList])
     return resultString

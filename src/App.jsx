@@ -9,15 +9,22 @@ function App() {
   const [next, setNext] = useState(false)
   const [hashList, setHashList] = useState([]);
 
+  const options = [
+    { name: 'Tom', symbol: '🐤', vector: [1, 0, 0] },
+    { name: 'Mary', symbol: '☂️', vector: [0, 1, 0] },
+    { name: 'Sue', symbol: '✂️', vector: [0, 0, 1] },
+  
+  ];
+
   return (
     <>
       {!start ?
         <Home start={start} setStart={setStart} />
         :
         !next ?
-          <VotingDemo setStart={setStart} setNext={setNext} hashList={hashList} setHashList={setHashList}/>
+          <VotingDemo setStart={setStart} setNext={setNext} hashList={hashList} setHashList={setHashList} options = {options}/>
         :
-          <TallyDemo setStart={setStart} setNext={setNext} hashList={hashList}/>
+          <TallyDemo setStart={setStart} setNext={setNext} hashList={hashList} options={options}/>
       }
     </>
   )

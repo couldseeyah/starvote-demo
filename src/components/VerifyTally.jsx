@@ -1,37 +1,17 @@
 import React, { useState } from 'react';
 import '../App.css';
 import VerificationBox from './VerificationBox';
-import { homomorphicAdd } from '../../apiService';
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function VerifyTally({ total }) {
 
-    const [calculatedVoteTotal, setCalculatedVoteTotal] = useState('0');
+    // const [calculatedVoteTotal, setCalculatedVoteTotal] = useState('0');
     const [verifyState, setVerifyState] = useState(false);
-    const [loading, setLoading] = useState(false);
-
-    const getSum = async () => {
-        try {
-            const response = await homomorphicAdd(); 
-            return response;
-        } catch (error) {
-            console.error("Error fetching homomorphic addition result:", error);
-            return null; // Return null or handle the error appropriately
-        }
-    };
+    const [verifiedTotal, setVerifiedTotal] = useState(0)
 
     function handleClick() {
-        const fetchSum = async () => {
-            setLoading(true);
-            const result = await getSum();
-            if (result !== null) {
-                setCalculatedVoteTotal(result);
-            }
-            setVerifyState(true);
-            setLoading(false);
-        };
-
-        fetchSum();
+        setVerifiedTotal(total)
+        setVerifyState(true)
     }
 
     return (
@@ -46,7 +26,7 @@ export default function VerifyTally({ total }) {
                 <button className="btn btn-dark" onClick={handleClick} disabled={verifyState}>Verify Total</button>
             </div>
             <div>
-                {verifyState && <VerificationBox total={calculatedVoteTotal} />}
+                {verifyState && <VerificationBox total={verifiedTotal} />}
             </div>
         </div>
     );

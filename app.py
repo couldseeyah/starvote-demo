@@ -19,6 +19,7 @@ def encrypt():
 
 @app.route('/homomorphic_add', methods=['GET'])
 def add():
+    print("Encrypted objects list inside 'add' route: ", len(encrypted_objects))
     result = homomorphic_addition(circuit, encrypted_objects)
     encrypted_objects.clear()
     return jsonify({'result': result}) 

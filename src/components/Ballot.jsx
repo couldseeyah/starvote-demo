@@ -4,21 +4,23 @@ import { encryptArray } from '../../apiService';
 import Spinner from 'react-bootstrap/Spinner';
 
 
-export default function Ballot({ currentBallotID, setCurrentBallotID, setHashList, voterNumber }) {
+export default function Ballot({ currentBallotID, setCurrentBallotID, setHashList, voterNumber, options}) {
     const [vote, setVote] = useState(null);
     const [encryption, setEncryption] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const options = [
-        { name: 'Tom', symbol: '🐤', vector: [1, 0, 0] },
-        { name: 'Mary', symbol: '☂️', vector: [0, 1, 0] },
-        { name: 'Sue', symbol: '✂️', vector: [0, 0, 1] },
-    ];
+    // const options = [
+    //     { name: 'Tom', symbol: '🐤', vector: [1, 0, 0] },
+    //     { name: 'Mary', symbol: '☂️', vector: [0, 1, 0] },
+    //     { name: 'Sue', symbol: '✂️', vector: [0, 0, 1] },
+    // ];
+    const candidates = options
 
     const getEncryption = async () => {
         if (vote) {
             try {
                 const array = vote.vector;  // Provide the appropriate array data
+                print("Vote vector: ", array)
                 const response = await encryptArray(array);
                 const receivedEncryption = response.hash;
                 if (vote) {
@@ -32,7 +34,7 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
 
     function castVote() {
         if (voterNumber >= currentBallotID) {
-            const encryptionObject = {symbol: vote.symbol, hash: encryption };
+            const encryptionObject = {symbol: vote.symbol, hash: encryption};
             setHashList(hashList => [...hashList, encryptionObject]);
             setCurrentBallotID(currentBallotID + 1);
         }
@@ -57,7 +59,7 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
             <div className='rowcontainer'>
                 <div className="ballot-container column side">
                     <h3>Ballot</h3>
-                    {options.map((option, index) => (
+                    {candidates.map((option, index) => (
                         <div key={index} className="ballot-option">
                             <input
                                 type="radio"

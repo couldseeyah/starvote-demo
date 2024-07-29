@@ -3,7 +3,7 @@ import VoterNumberSelection from './components/VoterNumberSelection';
 import BallotEncryptions from './components/BallotEncryptions';
 import { useState, useEffect } from 'react';
 
-export default function VotingDemo({ setStart, setNext, hashList, setHashList }) {
+export default function VotingDemo({ setStart, setNext, hashList, setHashList, options}) {
     const [currentBallotID, setCurrentBallotID] = useState(1);
     const [voterNumber, setVoterNumber] = useState(1);
 
@@ -28,7 +28,7 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList })
                     <Ballot currentBallotID={currentBallotID}
                         setCurrentBallotID={setCurrentBallotID}
                         setHashList={setHashList}
-                        voterNumber={voterNumber} />
+                        voterNumber={voterNumber} options={options}/>
                 </div>
                 <div className="column side" style={{ backgroundColor: "#ccc" }}>
                     <BallotEncryptions hashList={hashList} />

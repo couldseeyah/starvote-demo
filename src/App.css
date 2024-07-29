@@ -266,25 +266,58 @@ body {
 .large-font{
   font-size: 2rem;
 }
-.custom-card-right {
-  min-height: 60vh;
-  margin-inline: 5%;
-  /* min-width: 100%; */
-  max-width: 100%; /* Different max-width */
-  padding: 30px; /* Different padding */
-  border: 2px solid #aaa; /* Different border */
-  border-radius: 10px; /* Different border-radius */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Different box-shadow */
+.tally-font{
+  font-style: bold;
 }
+.flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; 
+  gap: 20px;
+}
+
+.column.large {
+  flex: 0 0 60%;
+  max-width: 60%;
+  padding: 10px
+}
+.column.small {
+  flex: 0 0 40%;
+  max-width: 40%;
+  padding: 10px;
+}
+
+.tally-demo-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+}
+
 .custom-card {
+  flex: 0 0 70%;
   min-height: 70vh;
-  margin-inline: 5%;
-  max-width: 100%; /* Different max-width */
-  padding: 30px; /* Different padding */
-  border: 2px solid #aaa; /* Different border */
-  border-radius: 10px; /* Different border-radius */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Different box-shadow */
+  /* margin-inline: 5%; */
+  max-width: 70%;
+  padding: 30px;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+.custom-card-right {
+  flex: 0 0 30%;
+  min-height: 70vh;
+  max-width: 30%;
+  padding: 30px;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .custom-header {
   background-color: #f8f9fa; /* Light grey background */
