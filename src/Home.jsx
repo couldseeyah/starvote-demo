@@ -1,6 +1,21 @@
 import starIcon from '/wired-flat-237-star-rating.svg';
+import { useEffect } from 'react';
+import { clearEncryptedObjects } from '../apiService';
 
 export default function Home({ start, setStart }) {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await clearEncryptedObjects();
+        console.log('Encrypted objects cleared:', result);
+      } catch (error) {
+        console.error('Error clearing encrypted objects:', error);
+      }
+    };
+      fetchData();
+    }, []);
+
   return (
     <>
       <div className="header">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.css'
 
 
-export default function Tally({total, hashList, options}) {
+export default function Tally({total, hashList, options, encryptedResult}) {
     console.log("Total value: ", total)
     const totalStr = total.toString();
     const totalList = totalStr.replace(/\s/g, '').split('');
@@ -28,6 +28,7 @@ export default function Tally({total, hashList, options}) {
                     <h2>Vote Tally</h2>
                 </div>
                 <div>
+                    <h4 style={{marginTop: '2%'}}>Total Votes (Encrypted): {encryptedResult}</h4>
                     <h4 style={{marginTop: '2%'}}>Total Votes (Vector): {total}</h4>
                     <h4 style={{marginTop: '2%'}}>Total Votes by Candidate:</h4>
                     {options.map((option, index) => (

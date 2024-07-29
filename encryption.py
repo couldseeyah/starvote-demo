@@ -33,10 +33,14 @@ def encrypt_and_hash(input_array, circuit, encrypted_objects):
     # Generate a hash of the serialized data
     hash_object = hashlib.sha256(serialized_data)
     hash_hex = hash_object.hexdigest()
-    print("Encrypted objects inside encrypt and hash func: ", len(encrypted_objects))
     return hash_hex
 
-#performs homomorphic addition and returns result
+def get_hash(input):
+    hash_object = hashlib.sha256(input)
+    hash_hex = hash_object.hexdigest()
+    return hash_hex
+
+#performs homomorphic addition and returns decrypted result + hash of serialized encrypted result
 def homomorphic_addition(circuit, encrypted_objects):
 
     ciphertext = [fhe.Value.deserialize(obj) for obj in encrypted_objects]
@@ -46,17 +50,30 @@ def homomorphic_addition(circuit, encrypted_objects):
         encrypted_result = circuit.run(ciphertext[i], ciphertext[i + 1])
         ciphertext[i + 1] = encrypted_result
 
-    print("After addition: ", ciphertext)
-    # Decrypt the result
-    result = circuit.decrypt(ciphertext[-1])
-    print("Result of homomorphic addition: ", result)
-    resultList = result.tolist()
+    #Result
+    encrypted_result = ciphertext[-1].serialize()
+    encrypted_result = get_hash(encrypted_result)[:16] 
+    decrypted_result = circuit.decrypt(ciphertext[-1])
+    resultList = decrypted_result.tolist()
     resultString = ' '.join([str(elem) for elem in resultList])
-    return resultString
+    print("Encrypted result: ", encrypted_result, "\nDecrypted Result: ", resultString)
+    return resultString, encrypted_result
 
 
-#Running
-# arrays_to_encrypt = [np.array([1, 0, 0]), np.array([0, 1, 2]), np.array([2, 3, 1])]
-# circuit = compiler_setup()
-# encrypted_arrays, hash = encrypt_and_hash(arrays_to_encrypt, circuit)
-# result = homomorphic_addition(encrypted_arrays, circuit)
+# #performs homomorphic addition and returns result
+# def homomorphic_addition(circuit, encrypted_objects):
+
+#     ciphertext = [fhe.Value.deserialize(obj) for obj in encrypted_objects]
+
+#     #take the first two arrays and add them. loop until all arrays are added
+#     for i in range(len(ciphertext) - 1):
+#         encrypted_result = circuit.run(ciphertext[i], ciphertext[i + 1])
+#         ciphertext[i + 1] = encrypted_result
+
+#     print("After addition: ", ciphertext)
+#     # Decrypt the result
+#     result = circuit.decrypt(ciphertext[-1])
+#     print("Result of homomorphic addition: ", result)
+#     resultList = result.tolist()
+#     resultString = ' '.join([str(elem) for elem in resultList])
+#     return resultString
