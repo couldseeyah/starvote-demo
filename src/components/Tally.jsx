@@ -27,15 +27,17 @@ export default function Tally({total, hashList, options, encryptedTotal}) {
                     <h2>Vote Tally</h2>
                 </div>
                 <div>
-                    <h4 style={{marginTop: '2%'}}>Total Votes (Encrypted): {encryptedTotal}</h4>
+                    <h4 style={{marginTop: '3%'}}>Total Votes (Encrypted): {encryptedTotal}</h4>
                     <h4 style={{marginTop: '2%'}}>Total Votes (Vector): {total}</h4>
-                    <h4 style={{marginTop: '2%'}}>Total Votes by Candidate:</h4>
-                    {options.map((option, index) => (
-                            <div key={index} className="tally-item">
-                                <span className='large-font-list'>{option.symbol + "  " + option.name + ':    '}</span>
-                                <span className='large-font-list'>{totalList[index]}</span>
-                            </div>
-                        ))}
+                    <div style={{backgroundColor: '#bbb', paddingTop: '3%', paddingBottom: '3%', paddingInline: '5%', marginTop: '4%'}}>
+                        <h4>Total Votes by Candidate:</h4>
+                        {options.map((option, index) => (
+                                <div key={index} className="tally-item">
+                                    <span className='large-font-list'>{option.symbol + "  " + option.name + ':    '}</span>
+                                    <span className='large-font-list'>{totalList[index]}</span>
+                                </div>
+                            ))}
+                    </div>
                 </div>
                 <Download></Download>
             </div>

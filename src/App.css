@@ -44,6 +44,14 @@ body {
   margin: 10px 0; 
 }
 
+.row-home {
+  width: 55vw;
+  display: -webkit-flex;
+  display: flex;
+  padding: 10px; 
+  margin-inline: auto;
+}
+
 .rowcontainer {
   width: 40vw;
   display: flex;
@@ -230,7 +238,7 @@ body {
 }
 
 .card {
-  width: 100%;
+  width: 50%;
   max-width: 500px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -278,12 +286,12 @@ body {
 
 .column.large {
   flex: 0 0 50%;
-  max-width: 50%;
+  max-width: 45%;
   padding: 10px
 }
 .column.small {
   flex: 0 0 50%;
-  max-width: 50%;
+  max-width: 45%;
   padding: 10px;
 }
 
@@ -299,7 +307,7 @@ body {
   min-height: 70vh;
   /* margin-inline: 5%; */
   max-width: 70%;
-  padding: 30px;
+  padding: 20px;
   border: 2px solid #aaa;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);

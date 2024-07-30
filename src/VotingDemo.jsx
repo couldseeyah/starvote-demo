@@ -17,7 +17,6 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList, o
             }
             setHashList([]);
         };
-    
         fetchDataAndClearHashList();
     }, []);
 
