@@ -21,12 +21,6 @@ export default function TallyDemo({ setStart, setNext, hashList, options}) {
         }
     };
 
-    const fetchSum = async () => {
-        const result = await getSum();
-        if (result !== null) {
-            setTotal(result);
-        }
-    };
 
     // useEffect hook to call fetchSum when the component is mounted
     useEffect(() => {
