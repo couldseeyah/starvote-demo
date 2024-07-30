@@ -8,7 +8,6 @@ export default function Home({ start, setStart }) {
     const fetchData = async () => {
       try {
         const result = await clearEncryptedObjects();
-        console.log('Encrypted objects cleared:', result);
       } catch (error) {
         console.error('Error clearing encrypted objects:', error);
       }

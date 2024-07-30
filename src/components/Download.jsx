@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../App.css';
-import VerificationBox from './VerificationBox';
 import { downloadZip } from '../../apiService';
 
 export default function Download() {
@@ -23,11 +22,8 @@ export default function Download() {
 
     return (
         <div className="text-center">
-            <div className="custom-header">
-                <h2>Verify Tally</h2>
-            </div>
             <div className="flex-grow-1">
-                <h5 className="subtitle">You may verify the sum of encrypted votes by downloading the encrypted votes data. </h5>
+                <p className="subtitle">You may verify the sum of encrypted votes by downloading the encrypted votes data. </p>
             </div>
             <div className="button-container">
                 <button className="btn btn-dark" onClick={handleDownload}>Download</button>

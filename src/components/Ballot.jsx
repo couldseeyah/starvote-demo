@@ -8,19 +8,12 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
     const [vote, setVote] = useState(null);
     const [encryption, setEncryption] = useState('');
     const [loading, setLoading] = useState(false);
-
-    // const options = [
-    //     { name: 'Tom', symbol: '🐤', vector: [1, 0, 0] },
-    //     { name: 'Mary', symbol: '☂️', vector: [0, 1, 0] },
-    //     { name: 'Sue', symbol: '✂️', vector: [0, 0, 1] },
-    // ];
     const candidates = options
 
     const getEncryption = async () => {
         if (vote) {
             try {
                 const array = vote.vector;  // Provide the appropriate array data
-                print("Vote vector: ", array)
                 const response = await encryptArray(array);
                 const receivedEncryption = response.hash;
                 if (vote) {

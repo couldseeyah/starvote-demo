@@ -9,7 +9,6 @@ export const encryptArray = async (array) => {
 
 export const homomorphicAdd = async () => {
     const response = await axios.get(`${API_URL}/homomorphic_add`);
-    console.log("Respone of homomorphic add: ", response)
     return response.data;
 };
 
@@ -20,5 +19,10 @@ export const downloadZip = async () => {
 
 export const clearEncryptedObjects = async () => {
     const response = await axios.post(`${API_URL}/clear-encrypted-objects`);
+    return response.data;
+};
+
+export const fetchVerification = async (array) => {
+    const response = await axios.post(`${API_URL}/verify`, { array });
     return response.data;
 };

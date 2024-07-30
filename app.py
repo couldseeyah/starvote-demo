@@ -1,6 +1,6 @@
 from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
-from encryption import encrypt_and_hash, homomorphic_addition, compiler_setup
+from encryption import encrypt_and_hash, homomorphic_addition, compiler_setup, verification
 import zipfile
 import io
 import json
@@ -10,6 +10,7 @@ CORS(app, origins=['http://localhost:5173'])
 
 #global variable for encrypted objects
 encrypted_objects = []
+encrypted_result_store = []
 
 circuit = compiler_setup()
 
@@ -22,14 +23,13 @@ def encrypt():
 
 @app.route('/homomorphic_add', methods=['GET'])
 def add():
-    print("Encrypted objects list inside 'add' route: ", len(encrypted_objects))
-    result, encrypted_result = homomorphic_addition(circuit, encrypted_objects)
-    # encrypted_objects.clear()
+    result, encrypted_result = homomorphic_addition(circuit, encrypted_objects, encrypted_result_store)
     return jsonify({'result': result, 'encrypted_result': encrypted_result}) 
 
 @app.route('/clear-encrypted-objects', methods=['POST'])
 def clear_encrypted_objects():
     encrypted_objects.clear()
+    encrypted_result_store.clear()
     return jsonify({'status': 'success'})
 
 @app.route('/download-zip', methods=['GET'])
@@ -44,9 +44,16 @@ def download_zip():
     # Seek to the beginning of the memory file
     memory_file.seek(0)
 
-    # Send the zip file as a response
     response = send_file(memory_file, download_name='encrypted_objects.zip', as_attachment=True)
     return response
+
+
+@app.route('/verify', methods=['POST'])
+def verify():
+    data = request.json
+    array = data['array']
+    hash, reresult = verification(circuit, encrypted_result_store, array)
+    return jsonify({'hash': hash, 'reresult': reresult})
 
 if __name__ == '__main__':
     app.run(debug=True)
