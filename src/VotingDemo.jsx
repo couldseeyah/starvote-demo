@@ -2,15 +2,24 @@ import Ballot from './components/Ballot';
 import VoterNumberSelection from './components/VoterNumberSelection';
 import BallotEncryptions from './components/BallotEncryptions';
 import { useState, useEffect } from 'react';
+import { clearEncryptedObjects } from '../apiService';
 
 export default function VotingDemo({ setStart, setNext, hashList, setHashList, options}) {
     const [currentBallotID, setCurrentBallotID] = useState(1);
     const [voterNumber, setVoterNumber] = useState(1);
 
-    useEffect
-        (() => {
+    useEffect(() => {
+        const fetchDataAndClearHashList = async () => {
+            try {
+                const result = await clearEncryptedObjects();
+            } catch (error) {
+                console.error('Error clearing encrypted objects:', error);
+            }
             setHashList([]);
-        }, []);
+        };
+    
+        fetchDataAndClearHashList();
+    }, []);
 
     return (
         <>
