@@ -27,31 +27,29 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList, o
             </div>
 
             <div className="row">
-                <div className="column side" style={{ backgroundColor: "#aaa" }}>
+                <div className="column side animate__animated animate__backInDown">
                     <VoterNumberSelection voterNumber={voterNumber}
                         setVoterNumber={setVoterNumber}
                         hashList={hashList} />
                 </div>
-                <div className="column middle" style={{ backgroundColor: "#bbb" }}>
+                <div className="column middle animate__animated animate__backInDown animate__delay-1s">
                     <Ballot currentBallotID={currentBallotID}
                         setCurrentBallotID={setCurrentBallotID}
                         setHashList={setHashList}
                         voterNumber={voterNumber} options={options}/>
                 </div>
-                <div className="column side" style={{ backgroundColor: "#ccc" }}>
+                <div className="column side animate__animated animate__backInDown animate__delay-2s">
                     <BallotEncryptions hashList={hashList} />
                 </div>
             </div>
 
-            <div className="footer">
-                <div className="card" style={{ marginLeft: '2rem', gap: '1rem', display: 'flex', justifyContent: 'space-evenly' }}>
-                    <button onClick={() => setStart(false)}>
-                        Back
-                    </button>
-                    <button onClick={() => setNext(true)} disabled={(hashList.length < voterNumber)}>
+            <div className="d-flex justify-content-center mt-3">
+                <button className="btn btn-dark mx-2" onClick={() => setStart(false)}>
+                    Back
+                </button>
+                <button className="btn btn-dark mx-2" onClick={() => setNext(true)} disabled={(hashList.length < voterNumber)}>
                         Next
-                    </button>
-                </div>
+                </button>
             </div>
         </>
     );

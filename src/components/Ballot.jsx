@@ -50,7 +50,7 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
     return (
         <>
             <div className='rowcontainer'>
-                <div className="ballot-container column side">
+                <div className="ballot-container inner-column">
                     <h3>Ballot</h3>
                     {candidates.map((option, index) => (
                         <div key={index} className="ballot-option">
@@ -76,9 +76,9 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
                     <h6>Ballot ID: {(currentBallotID > voterNumber) ? currentBallotID - 1 : currentBallotID}</h6>
                     <button style={{'border':'1px solid grey' }} onClick={castVote} disabled={!vote}>Cast Vote</button>
                 </div>
-                <div className='ballot-container column side'>
-                    <h4>Recorded Vote</h4>
-                    {vote && <p>{vote?.name + "     " + vote?.symbol}</p>}
+                <div className='ballot-container inner-column'>
+                    <h4 style={{paddingBottom:'20%'}}>Recorded Vote</h4>
+                    {/* {vote && <p>{vote?.name + "     " + vote?.symbol}</p>} */}
                     <h6>Encryption:</h6>
                     <h6 style={{ fontSize: '1em' }}>{loading ? <Spinner animation="border" variant="warning" /> :
                         encryption}</h6>

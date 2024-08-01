@@ -6,13 +6,13 @@ import { homomorphicAdd } from '../apiService';
 import './App.css';
 
 
-export default function TallyDemo({ setStart, setNext, hashList, options}) {
+export default function TallyDemo({ setStart, setNext, hashList, options }) {
     const [total, setTotal] = useState(0);
     const [encryptedTotal, setEncryptedTotal] = useState(null)
-    
+
     const getSum = async () => {
         try {
-            const response = await homomorphicAdd(); 
+            const response = await homomorphicAdd();
             setTotal(response.result)
             setEncryptedTotal(response.encrypted_result)
         } catch (error) {
@@ -26,27 +26,27 @@ export default function TallyDemo({ setStart, setNext, hashList, options}) {
     useEffect(() => {
         getSum()
         // fetchSum();
-    }, []); 
+    }, []);
 
     return (
         <>
-        <h1 className="text-center mt-1">ECP Bulletin Board</h1>
-        <div className="tally-demo-container">
-            <div className="custom-card">
-                <Tally total={total} hashList={hashList} options={options} encryptedTotal={encryptedTotal}/>
+            <h1 className="header">ECP Bulletin Board</h1>
+            <div className="tally-demo-container">
+                <div className="custom-card animate__animated animate__backInDown">
+                    <Tally total={total} hashList={hashList} options={options} encryptedTotal={encryptedTotal} />
+                </div>
+                <div className="custom-card-right animate__animated animate__backInDown animate__delay-1s">
+                    <VerifyTally total={total} encryptedTotal={encryptedTotal} />
+                </div>
             </div>
-            <div className="custom-card-right">
-                <VerifyTally total={total} encryptedTotal={encryptedTotal}/>
-            </div>
-        </div>
-        <div className="d-flex justify-content-center mt-3">
-                 <button className="btn btn-dark mx-2" onClick={() => { setNext(false); setStart(true); }}>
-                     Back
-                 </button>
+            <div className="d-flex justify-content-center mt-3">
+                <button className="btn btn-dark mx-2" onClick={() => { setNext(false); setStart(true); }}>
+                    Back
+                </button>
                 <button className="btn btn-dark mx-2" onClick={() => { setStart(false); setNext(false); }}>
-                     Back to Home
-                 </button>
-           </div>
+                    Back to Home
+                </button>
+            </div>
         </>
     );
 }
