@@ -307,9 +307,9 @@ body {
 
 .flex-container {
   display: flex;
-  width: 100%;
   justify-content: space-between;
   gap: 20px;
+  align-self: flex-start;
 }
 
 .column.large {
@@ -326,15 +326,15 @@ body {
 
 .tally-demo-container {
   display: flex;
-  width: 100%;
+  width: 85vw;
+  height: 85vh;
   gap: 20px;
   justify-content: space-between;
 }
 
 .custom-card {
-  flex: 0 0 70%;
-  min-height: 70vh;
-  /* margin-inline: 5%; */
+  /* flex: 0 0 70%;
+  min-height: 70vh; */
   max-width: 70%;
   padding: 20px;
   border: 2px solid #aaa;
@@ -343,9 +343,9 @@ body {
 }
 
 .custom-card-right {
-  flex: 0 0 30%;
-  min-height: 70vh;
-  max-width: 30%;
+  /* flex: 0 0 30%;
+  min-height: 70vh;*/
+  max-width: 30%; 
   padding: 30px;
   border: 2px solid #aaa;
   border-radius: 10px;

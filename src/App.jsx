@@ -5,8 +5,8 @@ import VotingDemo from './VotingDemo'
 import TallyDemo from './TallyDemo'
 
 function App() {
-  const [start, setStart] = useState(false)
-  const [next, setNext] = useState(false)
+  const [start, setStart] = useState(false);
+  const [next, setNext] = useState(false);
   const [hashList, setHashList] = useState([]);
 
   const options = [

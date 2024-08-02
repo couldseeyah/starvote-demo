@@ -5,16 +5,16 @@ import Spinner from 'react-bootstrap/Spinner';
 
 export default function VerifyTally({ total, encryptedTotal }) {
 
-    const [reencryptedTotal, setReencryptedTotal] = useState(null)
-    const [difference, setDifference] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [verifyStart, setVerifyStart] = useState(false)
+    const [reencryptedTotal, setReencryptedTotal] = useState(null);
+    const [difference, setDifference] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [verifyStart, setVerifyStart] = useState(false);
 
     const getVerification = async () => {
         try {
             const response = await fetchVerification(total);
-            setReencryptedTotal(response.hash.slice(0, 16))
-            setDifference(response.reresult)
+            setReencryptedTotal(response.hash.slice(0, 16));
+            setDifference(response.reresult);
         }
         catch (error) {
             console.error("Error fetching verification:", error);

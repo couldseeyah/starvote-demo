@@ -78,7 +78,7 @@ export default function Ballot({ currentBallotID, setCurrentBallotID, setHashLis
                 </div>
                 <div className='ballot-container inner-column'>
                     <h4 style={{paddingBottom:'20%'}}>Recorded Vote</h4>
-                    {/* {vote && <p>{vote?.name + "     " + vote?.symbol}</p>} */}
+                    {vote && <p>{vote?.name + "     " + vote?.symbol}</p>}
                     <h6>Encryption:</h6>
                     <h6 style={{ fontSize: '1em' }}>{loading ? <Spinner animation="border" variant="warning" /> :
                         encryption}</h6>
