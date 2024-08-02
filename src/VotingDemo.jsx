@@ -1,12 +1,15 @@
+import { Button } from 'react-bootstrap';
 import Ballot from './components/Ballot';
 import VoterNumberSelection from './components/VoterNumberSelection';
 import BallotEncryptions from './components/BallotEncryptions';
+import Instructions from './components/Instructions';
 import { useState, useEffect } from 'react';
 import { clearEncryptedObjects } from '../apiService';
 
 export default function VotingDemo({ setStart, setNext, hashList, setHashList, options}) {
     const [currentBallotID, setCurrentBallotID] = useState(1);
     const [voterNumber, setVoterNumber] = useState(1);
+    const [showModal, setShowModal] = useState(true)
 
     useEffect(() => {
         const fetchDataAndClearHashList = async () => {
@@ -20,8 +23,15 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList, o
         fetchDataAndClearHashList();
     }, []);
 
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false); 
+
     return (
         <>
+            <Button variant="primary" onClick={handleShowModal} style={{ position: 'absolute', top: '3%', left: '3%', width: '10%', backgroundColor: '#587a69', borderColor: '#587a69'}}>
+                Help
+            </Button>
+            <Instructions show={showModal} handleClose={handleCloseModal} imageSrc="/cast.png" heading="Voting Guide" />
             <div className="header">
                 <h1>Voting at Polling Station XYZ</h1>
             </div>

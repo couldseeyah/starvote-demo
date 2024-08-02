@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import Tally from './components/Tally';
 import VerifyTally from './components/VerifyTally';
+import Instructions from './components/Instructions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { homomorphicAdd } from '../apiService';
 import './App.css';
@@ -9,6 +11,7 @@ import './App.css';
 export default function TallyDemo({ setStart, setNext, hashList, options }) {
     const [total, setTotal] = useState(0);
     const [encryptedTotal, setEncryptedTotal] = useState(null)
+    const [showModal, setShowModal] = useState(true);
 
     const getSum = async () => {
         try {
@@ -28,8 +31,15 @@ export default function TallyDemo({ setStart, setNext, hashList, options }) {
         // fetchSum();
     }, []);
 
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false); 
+
     return (
         <>
+            <Button variant="primary" onClick={handleShowModal} style={{ position: 'fixed', top: '3%', left: '3%', width: '10%', zIndex: 1000, backgroundColor: '#587a69', borderColor: '#587a69'}}>
+                Help
+            </Button>
+            <Instructions show={showModal} handleClose={handleCloseModal} imageSrc="/verify.png" heading="Verification Guide"/>
             <h1 className="header">ECP Bulletin Board</h1>
             <div className="tally-demo-container">
                 <div className="custom-card animate__animated animate__backInDown">
