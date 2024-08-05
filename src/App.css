@@ -64,7 +64,6 @@ body {
 .column {
   padding: 10px;
   margin: 10px;
-  /* Add this line */
   padding: 20px;
   border: 2px solid #aaa;
   border-radius: 10px;
