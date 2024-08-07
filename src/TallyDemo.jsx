@@ -40,7 +40,7 @@ export default function TallyDemo({ setStart, setNext, hashList, options }) {
                 Help
             </Button>
             <Instructions show={showModal} handleClose={handleCloseModal} imageSrc="/verify.png" heading="Verification Guide"/>
-            <h1 className="header">ECP Bulletin Board</h1>
+            <h1 className="header">ECP Bulletin Board 📌</h1>
             <div className="tally-demo-container">
                 <div className="custom-card animate__animated animate__backInDown">
                     <Tally total={total} hashList={hashList} options={options} encryptedTotal={encryptedTotal} />
@@ -50,7 +50,7 @@ export default function TallyDemo({ setStart, setNext, hashList, options }) {
                 </div>
             </div>
             <div className="d-flex justify-content-center mt-3">
-                <button className="btn btn-dark mx-2" onClick={() => { setNext(false); setStart(true); }}>
+                <button className="btn btn-dark mx-2" onClick={() => { setNext(false); setStart(true);}}>
                     Back
                 </button>
                 <button className="btn btn-dark mx-2" onClick={() => { setStart(false); setNext(false); }}>

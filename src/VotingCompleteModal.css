@@ -1,0 +1,71 @@
+/* Reset default padding and margin for all elements */
+* {
+    padding: 0;
+    margin: 0;
+}
+  
+/* Container styling for the wrapper */
+.wrapper {
+    height: 40vh; /* Increased height of the wrapper */
+    display: flex; /* Use Flexbox for layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #ffffff; /* Light grey background */
+}
+  
+/* Styling for the circle in the checkmark */
+.checkmark__circle {
+    stroke-dasharray: 200; /* Increased length of the stroke dash */
+    stroke-dashoffset: 200; /* Increased offset of the stroke dash */
+    stroke-width: 3; /* Increased width of the stroke */
+    stroke-miterlimit: 10; /* Miter limit for sharp corners */
+    stroke: #7ac142; /* Green stroke color */
+    fill: none; /* No fill inside the circle */
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; /* Animate the stroke */
+}
+  
+/* Styling for the checkmark itself */
+.checkmark {
+    width: 80px; /* Increased width of the checkmark */
+    height: 80px; /* Increased height of the checkmark */
+    border-radius: 50%; /* Make it a circle */
+    display: block; /* Block-level element */
+    stroke-width: 3; /* Increased width of the stroke */
+    stroke: #fff; /* White stroke color */
+    stroke-miterlimit: 10; /* Miter limit for sharp corners */
+    margin: 10% auto; /* Center horizontally with margin */
+    box-shadow: inset 0px 0px 0px #7ac142; /* Green shadow inside the checkmark */
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; /* Animate fill and scale */
+}
+  
+/* Styling for the check mark inside the checkmark */
+.checkmark__check {
+    transform-origin: 50% 50%; /* Set the origin of transformation */
+    stroke-dasharray: 60; /* Increased length of the stroke dash for the check mark */
+    stroke-dashoffset: 60; /* Increased offset of the stroke dash for the check mark */
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; /* Animate the stroke of the check mark */
+}
+  
+/* Keyframes for the stroke animation */
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0; /* Animate the dash offset to 0 */
+    }
+}
+  
+/* Keyframes for the scale animation */
+@keyframes scale {
+    0%, 100% {
+        transform: none; /* No transformation */
+    }
+    50% {
+        transform: scale3d(1.2, 1.2, 1); /* Scale the checkmark slightly more */
+    }
+}
+  
+/* Keyframes for the fill animation */
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 40px #7ac142; /* Animate the shadow to expand more */
+    }
+}

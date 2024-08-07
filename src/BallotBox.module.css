@@ -9,6 +9,8 @@ body {
   
   .container {
     position: relative;
+    top: 150px;
+    left: 100px;
     width: 300px;
     height: 300px;
   }
@@ -19,7 +21,7 @@ body {
     background-color: #c5ac81; /* Brown color */
     position: relative;
     overflow: hidden;
-    box-shadow: 20px -20px 1px rgb(58, 42, 10);
+    /* box-shadow: 20px -20px 1px rgb(58, 42, 10); */
     text-align: center;
     display: flex;
     justify-content: center;
@@ -30,6 +32,17 @@ body {
     color: rgb(58, 42, 10);
     z-index: 1;
     border: 5px solid rgb(0, 0, 0);
+    border-radius: 0.5rem;
+  }
+
+  .boxShadow {
+    width: 100%;
+    height: 70%;
+    background-color: rgb(58, 42, 10);
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    border-radius: 0.5rem;
   }
   
   .paper {
@@ -41,13 +54,29 @@ body {
     top: -150px; /* Start above the box */
     left: 50%;
     transform: translateX(-50%);
-    transition: transform 1s linear;
     opacity: 1;
     z-index: 0;
+    animation: none; /* No animation by default */
+  }
+  
+  @keyframes fallAnimation {
+    0% {
+      transform: translateX(-50%) translateY(-150px); /* Start above the box */
+    }
+    50%{
+      transform: translateX(0%) translateY(0); /* Move into the box */
+    }
+    100% {
+      transform: translateX(-50%) translateY(200px); /* Move into the box */
+    }
   }
   
   .fall {
-    transform: translateX(-50%) translateY(200px); /* Move into the box */
+    animation: fallAnimation 2s forwards; /* Apply the animation */
   }
   
   
+  .vote {
+    font-size: 12px;
+    padding: 3px;
+  }

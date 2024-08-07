@@ -1,6 +1,7 @@
 import VoteCasting from './VoteCasting';
 import VoterNumberSelection from './components/VoterNumberSelection';
 import { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 export default function VotingDemo({ setStart, setNext, hashList, setHashList, options }) {
     const [voterNumber, setVoterNumber] = useState(1);
@@ -9,15 +10,19 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList, o
     return (
         <>
             {isNumberSelection ? <>
-                <div className="header">
-                    <h1>Select Number of Voters</h1>
-                </div>
-                <div className="row">
-                    <div className="column side animate__animated animate__backInDown">
-                        <VoterNumberSelection voterNumber={voterNumber}
-                            setVoterNumber={setVoterNumber}
-                            hashList={hashList} />
-                    </div>
+                <div style={{ border: '2px solid #aaa', borderRadius: '2rem', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)' }} className="animate__animated animate__backInDown">
+                    <Container>
+                        <Row>
+                            <Col><h1> Choose Number of Voters </h1></Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <VoterNumberSelection voterNumber={voterNumber}
+                                    setVoterNumber={setVoterNumber}
+                                    hashList={hashList} />
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
 
                 <div className="d-flex justify-content-center mt-3">

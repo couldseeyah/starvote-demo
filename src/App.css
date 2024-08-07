@@ -57,7 +57,7 @@ body {
 .rowcontainer {
   width: 40vw;
   display: flex;
-  
+
 }
 
 /* Create three unequal columns that sits next to each other */
@@ -182,42 +182,23 @@ body {
   padding: 0.5rem;
   border: 2px solid #ccc;
   border-radius: 8px;
-  max-width: 200px;
+  width: 50%;
+  height: 150px;
   margin: 5% auto;
   background-color: #f9f9f9;
-}
-
-.grey-divs-container {
-  display: flex;
-  gap: 1rem;
-  margin: 10%;
-}
-
-.grey-div-column {
   display: flex;
   flex-direction: column;
-  position: relative;
-  width: 80px;
-  /* Adjust width to match grey-div width */
-  height: 200px;
-  /* Adjust height based on number of divs and their overlap */
-  /* align-items: center; */
-  /* position: relative; */
+  justify-content: center;
+  align-items: center;
 }
 
-.grey-div {
-  width: 50px;
-  height: 50px;
-  background-color: #e8e8e8;
-  border-radius: 10%;
-  border: 2px solid #ccc;
-  margin: 0;
-}
 
 .tally-demo-container {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  width: 100%;
+  gap: 20px;
 }
 
 .left-section,
@@ -284,7 +265,7 @@ body {
 }
 
 .large-font-list {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-inline: 10%;
 }
 
@@ -309,6 +290,10 @@ body {
   justify-content: space-between;
   gap: 20px;
   align-self: flex-start;
+  width: 100%;
+  max-height: 100%;
+  flex-wrap: wrap;
+  overflow: auto;
 }
 
 .column.large {
@@ -344,7 +329,7 @@ body {
 .custom-card-right {
   /* flex: 0 0 30%;
   min-height: 70vh;*/
-  max-width: 30%; 
+  max-width: 30%;
   padding: 30px;
   border: 2px solid #aaa;
   border-radius: 10px;
@@ -442,4 +427,48 @@ body {
 .qr-code {
   margin-left: 10px;
   font-size: 20px;
+}
+
+
+/* for ballotencryptions.jsx */
+.receipt-container {
+  height: 25rem;
+  padding: 20px;
+  border: 4px solid #000000;
+  border-radius: 1.5rem;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+
+
+.receipt-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+
+.hash-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 90px;
+  height: 120px;
+  background-color: #f0f0f0;
+  border: 5px dashed #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 0.5em;
+}
+
+
+
+.custom-row {
+  height: 70%; 
 }

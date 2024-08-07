@@ -27,8 +27,8 @@ export default function Tally({total, hashList, options, encryptedTotal}) {
                     <h2>Vote Tally</h2>
                 </div>
                 <div>
-                    <h4 style={{marginTop: '3%'}}>Total Votes (Encrypted): {encryptedTotal}</h4>
-                    <h4 style={{marginTop: '2%'}}>Total Votes (Vector): {total}</h4>
+                    <h5 style={{marginTop: '3%'}}>Total Votes (Encrypted): {encryptedTotal}</h5>
+                    <h5 style={{marginTop: '2%'}}>Total Votes (Vector): {total}</h5>
                     <div style={{borderRadius: '1rem', backgroundColor: '#F5F5F5', paddingTop: '3%', paddingBottom: '3%', paddingInline: '5%', marginTop: '4%'}}>
                         <h4>Total Votes by Candidate:</h4>
                         {options.map((option, index) => (

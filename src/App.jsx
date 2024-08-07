@@ -10,9 +10,9 @@ function App() {
   const [hashList, setHashList] = useState([]);
 
   const options = [
-    { name: 'Tom', symbol: '🐤', vector: [1, 0, 0] },
-    { name: 'Mary', symbol: '☂️', vector: [0, 1, 0] },
-    { name: 'Sue', symbol: '✂️', vector: [0, 0, 1] },
+    { name: 'Socialist', symbol: '⚖️', vector: [1, 0, 0] },
+    { name: 'Marxist', symbol: '🔨 ', vector: [0, 1, 0] },
+    { name: 'Anarchist', symbol: '🏛️', vector: [0, 0, 1] },
   
   ];
 
