@@ -40,7 +40,7 @@ export default function VerifyTally({ total, encryptedTotal }) {
     return (
         <div className="text-center">
             <div className="custom-header">
-                <h2>Verify Tally</h2>
+                <h2>Verify Results</h2>
             </div>
             <div className="flex-grow-1">
                 <h6 className="subtitle">To verify the total vote count, click on the button below. </h6>
