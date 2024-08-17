@@ -13,7 +13,8 @@ export default function VotingDemo({ setStart, setNext, hashList, setHashList, o
                 <div style={{ border: '2px solid #aaa', borderRadius: '2rem', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)' }} className="animate__animated animate__backInDown">
                     <Container>
                         <Row>
-                            <Col><h1> Choose Number of Voters </h1></Col>
+                            <Col><h1 style={{padding: '2%'}}> Start your Election! </h1>
+                                <h2> Choose Number of Voters </h2></Col>
                         </Row>
                         <Row>
                             <Col>

@@ -113,7 +113,7 @@ body {
 
 
 .button-1 {
-  background-color: #FFC738;
+  background-color: #187f26;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -141,7 +141,7 @@ body {
 
 .button-1:hover,
 .button-1:focus {
-  background-color: #FFB122;
+  background-color: #6cee5b;
 }
 
 .read-the-docs {
@@ -285,6 +285,7 @@ body {
   justify-content: space-evenly;
   flex: 1;
   margin-top: 4%;
+  border-radius: 0.5rem;
 }
 
 .verify-tally-container{
@@ -294,17 +295,17 @@ body {
   flex: 1;
   border: 5px solid black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* border-radius: 15px; */
+  border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 62%;
-  margin-top: 10%;
+  height: 75%;
+  margin-top: 7%;
   width: 70%
 }
 /* Result */
 .result {
   background-color: rgb(208, 233, 252);
   border: 6px solid #060606;
-  /* border-radius: 15px; */
+  border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 800px; /* Increased width */
@@ -370,6 +371,7 @@ body {
 
 /* Clipboard Header */
 .result-subheader {
+  border-radius: 0.5rem;
   background: linear-gradient(to bottom, #1d2d4d, #1d2d4d);
   color: white;
   padding: 10px;

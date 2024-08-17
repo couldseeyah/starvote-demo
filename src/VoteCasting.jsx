@@ -10,17 +10,18 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import VotingCompleteModal from './components/VotingCompleteModal';
 import InstructionToast from './components/InstructionToast';
 
-
 export default function VoteCasting({ setNext, hashList, setHashList, options, voterNumber, setIsNumberSelection }) {
     const [showModal, setShowModal] = useState(true); //instruction modal state
     const [loadAnimation, setLoadAnimation] = useState(false); //used just to initalize animations jo ooper se aate
     const [progressBar, setProgressBar] = useState(0); //for progress bar
+    const [loadingShow, setLoadingShow] = useState(false);
 
     //og ballot variables. change when votes casted
     const [currentBallotID, setCurrentBallotID] = useState(1); //keep track of ballot no. 
     const [vote, setVote] = useState(null); //NOT the real time vote. change when vote casted
     const [encryption, setEncryption] = useState('');
     const [voteTime, setVoteTime] = useState(null);
+    const [serialNo, setSerialNo] = useState('');
 
     //printer variables
     const [isAnimating, setIsAnimating] = useState(false); //for printer animation
@@ -58,7 +59,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
         if (isAnimating2) {
             console.log('Animation 2 started');
             setCurrentBallotID(currentBallotID + 1);
-            const encryptionObject = { symbol: vote.symbol, hash: encryption };
+            const encryptionObject = { symbol: vote.symbol, hash: encryption, time: voteTime };
             setHashList(hashList => [...hashList, encryptionObject]);
 
             const timer = setTimeout(() => {
@@ -105,7 +106,8 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                                 <Printer voterNumber={voterNumber} options={options} isAnimating={isAnimating} setIsAnimating={setIsAnimating}
                                     currentBallotID={currentBallotID} setCurrentBallotID={setCurrentBallotID}
                                     vote={vote} setVote={setVote} encryption={encryption} setEncryption={setEncryption}
-                                    voteTime={voteTime} setVoteTime={setVoteTime} />
+                                    voteTime={voteTime} setVoteTime={setVoteTime} serialNo={serialNo} setSerialNo={setSerialNo}
+                                    setLoadingShow={setLoadingShow}/>
                             </div>
 
                             {currentBallotID == 1 &&
@@ -120,7 +122,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                         <Col>
                             {currentBallotID == 2 &&
                                 <div style={{ position: 'absolute', top: '20%', zIndex: '5' }}>
-                                    <InstructionToast heading="Receipts 🧾" content="Receipts of casted votes. Voter keeps a physical copy. Election authorities keep a digital copy of these receipts." />
+                                    <InstructionToast heading="Receipts 🧾" content="Receipts of casted votes. Voter gets to take this receipt home." />
                                 </div>
                             }
                             <div className="animate__animated animate__backInDown" style={{ position: 'relative', top: '1%' }}>
@@ -139,7 +141,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                                             <p><b>VOTE</b>
                                                 <br /> {vote?.name}
                                                 <br /> {vote?.symbol}
-                                                <br /> {voteTime}
+                                                <br /> {serialNo}
                                             </p>
                                         </div>}
                                     </div>
@@ -172,33 +174,6 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                         </Col>
                     </Row>
                 </Container>
-                {/* <Button variant="primary" onClick={handleShowModal} style={{ position: 'absolute', top: '3%', left: '3%', width: '10%', backgroundColor: '#587a69', borderColor: '#587a69' }}>
-                    Help
-                </Button>
-
-                <div className="row">
-                    <div className="column side animate__animated animate__backInDown">
-                    <Printer/>
-                    </div>
-                    <div className="column side animate__animated animate__backInDown animate__delay-1s">
-                        <Ballot currentBallotID={currentBallotID}
-                            setCurrentBallotID={setCurrentBallotID}
-                            setHashList={setHashList}
-                            voterNumber={voterNumber} options={options} />
-                    </div>
-                    <div className="column side animate__animated animate__backInDown animate__delay-2s">
-                        <BallotEncryptions hashList={hashList} />
-                    </div>
-                </div>
-
-                <div className="d-flex justify-content-center mt-3">
-                    <button className="btn btn-dark mx-2" onClick={() => setIsNumberSelection(true)}>
-                        Back
-                    </button>
-                    <button className="btn btn-dark mx-2" onClick={() => setNext(true)} disabled={(hashList.length < voterNumber)}>
-                        Next
-                    </button>
-                </div> */}
             </>}
         </>
     );
