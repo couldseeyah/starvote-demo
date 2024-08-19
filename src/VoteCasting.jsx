@@ -9,12 +9,13 @@ import classNames from 'classnames';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import VotingCompleteModal from './components/VotingCompleteModal';
 import InstructionToast from './components/InstructionToast';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function VoteCasting({ setNext, hashList, setHashList, options, voterNumber, setIsNumberSelection }) {
     const [showModal, setShowModal] = useState(true); //instruction modal state
     const [loadAnimation, setLoadAnimation] = useState(false); //used just to initalize animations jo ooper se aate
     const [progressBar, setProgressBar] = useState(0); //for progress bar
-    const [loadingShow, setLoadingShow] = useState(false);
+    const [loadingPrint, setLoadingPrint] = useState(false); //for showing spinner on print button click
 
     //og ballot variables. change when votes casted
     const [currentBallotID, setCurrentBallotID] = useState(1); //keep track of ballot no. 
@@ -41,6 +42,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
 
     useEffect(() => {
         if (isAnimating) {
+            setLoadingPrint(false);
             console.log('Animation 1 started');
 
             const timer = setTimeout(() => {
@@ -89,6 +91,17 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
     return (
         <>
             <Instructions show={showModal} handleClose={handleCloseModal} imageSrc="/cast.png" heading="Voting Guide" />
+            {loadingPrint &&
+                <div className='overlayDiv'>
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                        <Spinner
+                            animation="border"
+                            variant='secondary'
+                            style={{ width: '5rem', height: '5rem' }}
+                        />
+                    </div>
+                </div>
+            }
             {(currentBallotID > voterNumber) && <VotingCompleteModal></VotingCompleteModal>}
             {loadAnimation && <>
                 <Container>
@@ -103,11 +116,11 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                     <Row className="custom-row">
                         <Col>
                             <div className="animate__animated animate__backInDown">
-                                <Printer voterNumber={voterNumber} options={options} isAnimating={isAnimating} setIsAnimating={setIsAnimating}
+                                <Printer voterNumber={voterNumber} setLoadingPrint={setLoadingPrint} options={options} isAnimating={isAnimating} setIsAnimating={setIsAnimating}
                                     currentBallotID={currentBallotID} setCurrentBallotID={setCurrentBallotID}
                                     vote={vote} setVote={setVote} encryption={encryption} setEncryption={setEncryption}
                                     voteTime={voteTime} setVoteTime={setVoteTime} serialNo={serialNo} setSerialNo={setSerialNo}
-                                    setLoadingShow={setLoadingShow}/>
+                                />
                             </div>
 
                             {currentBallotID == 1 &&

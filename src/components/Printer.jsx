@@ -4,7 +4,7 @@ import { encryptArray } from '../../apiService';
 import QRCode from '../assets/qr_code.svg';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Printer({ voterNumber, options, isAnimating, setIsAnimating, currentBallotID, setCurrentBallotID, vote, setVote, encryption, setEncryption, voteTime, setVoteTime, serialNo, setSerialNo }) {
+export default function Printer({ voterNumber, setLoadingPrint, options, isAnimating, setIsAnimating, currentBallotID, setCurrentBallotID, vote, setVote, encryption, setEncryption, voteTime, setVoteTime, serialNo, setSerialNo }) {
 
     const [currentVote, setCurrentVote] = useState(null);
 
@@ -46,18 +46,14 @@ export default function Printer({ voterNumber, options, isAnimating, setIsAnimat
 
     const handlePrint = async () => {        
         //setvariables
+
+        setLoadingPrint(true);
         setVote(currentVote);
         setVoteTime(getCurrentDateTime());
         setSerialNo(generateSerialNumber());
         const encryptionResult = await getEncryption();
         setEncryption(encryptionResult);
         setCurrentVote(null);
-
-        console.log('currentVote ' + currentVote.name);
-
-        console.log('vote ' + vote);
-        console.log('encryption ' + encryption);
-        console.log('voteTime ' + voteTime);
 
         isAnimating ? setIsAnimating(false) : setIsAnimating(true);
     }

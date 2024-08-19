@@ -32,6 +32,7 @@ def add():
 def clear_encrypted_objects():
     encrypted_objects.clear()
     encrypted_result_store.clear()
+    random_total[0] = 1
     return jsonify({'status': 'success'})
 
 @app.route('/download-zip', methods=['GET'])

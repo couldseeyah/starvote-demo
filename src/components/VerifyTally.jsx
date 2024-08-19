@@ -30,8 +30,9 @@ export default function VerifyTally({ total, encryptedTotal, randomness }) {
             await getVerification();
             setLoading(false);
         };
-
-        startVerification();
+        if (verifyStart){
+            startVerification();
+        }
     }, [verifyStart]);
 
 

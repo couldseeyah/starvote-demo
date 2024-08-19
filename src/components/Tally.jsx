@@ -2,9 +2,10 @@ import React from 'react';
 import Download from './Download';
 import '../App.css';
 
-export default function Bulletin({ total, options, encryptedTotal }) {
+export default function Tally({ total, options, encryptedTotal }) {
+  
   const totalStr = total.toString();
-  const totalList = totalStr.replace(/\s/g, '').split('');
+  const totalList = totalStr.split(',').map(Number);
   return (
     <>
       <div className="result">
