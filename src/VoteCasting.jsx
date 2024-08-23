@@ -9,18 +9,20 @@ import classNames from 'classnames';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import VotingCompleteModal from './components/VotingCompleteModal';
 import InstructionToast from './components/InstructionToast';
-
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function VoteCasting({ setNext, hashList, setHashList, options, voterNumber, setIsNumberSelection }) {
     const [showModal, setShowModal] = useState(true); //instruction modal state
     const [loadAnimation, setLoadAnimation] = useState(false); //used just to initalize animations jo ooper se aate
     const [progressBar, setProgressBar] = useState(0); //for progress bar
+    const [loadingPrint, setLoadingPrint] = useState(false); //for showing spinner on print button click
 
     //og ballot variables. change when votes casted
     const [currentBallotID, setCurrentBallotID] = useState(1); //keep track of ballot no. 
     const [vote, setVote] = useState(null); //NOT the real time vote. change when vote casted
     const [encryption, setEncryption] = useState('');
     const [voteTime, setVoteTime] = useState(null);
+    const [serialNo, setSerialNo] = useState('');
 
     //printer variables
     const [isAnimating, setIsAnimating] = useState(false); //for printer animation
@@ -40,6 +42,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
 
     useEffect(() => {
         if (isAnimating) {
+            setLoadingPrint(false);
             console.log('Animation 1 started');
 
             const timer = setTimeout(() => {
@@ -58,7 +61,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
         if (isAnimating2) {
             console.log('Animation 2 started');
             setCurrentBallotID(currentBallotID + 1);
-            const encryptionObject = { symbol: vote.symbol, hash: encryption };
+            const encryptionObject = { symbol: vote.symbol, hash: encryption, time: voteTime };
             setHashList(hashList => [...hashList, encryptionObject]);
 
             const timer = setTimeout(() => {
@@ -88,6 +91,17 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
     return (
         <>
             <Instructions show={showModal} handleClose={handleCloseModal} imageSrc="/cast.png" heading="Voting Guide" />
+            {loadingPrint &&
+                <div className='overlayDiv'>
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                        <Spinner
+                            animation="border"
+                            variant='secondary'
+                            style={{ width: '5rem', height: '5rem' }}
+                        />
+                    </div>
+                </div>
+            }
             {(currentBallotID > voterNumber) && <VotingCompleteModal></VotingCompleteModal>}
             {loadAnimation && <>
                 <Container>
@@ -102,10 +116,11 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                     <Row className="custom-row">
                         <Col>
                             <div className="animate__animated animate__backInDown">
-                                <Printer voterNumber={voterNumber} options={options} isAnimating={isAnimating} setIsAnimating={setIsAnimating}
+                                <Printer voterNumber={voterNumber} setLoadingPrint={setLoadingPrint} options={options} isAnimating={isAnimating} setIsAnimating={setIsAnimating}
                                     currentBallotID={currentBallotID} setCurrentBallotID={setCurrentBallotID}
                                     vote={vote} setVote={setVote} encryption={encryption} setEncryption={setEncryption}
-                                    voteTime={voteTime} setVoteTime={setVoteTime} />
+                                    voteTime={voteTime} setVoteTime={setVoteTime} serialNo={serialNo} setSerialNo={setSerialNo}
+                                />
                             </div>
 
                             {currentBallotID == 1 &&
@@ -139,7 +154,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                                             <p><b>VOTE</b>
                                                 <br /> {vote?.name}
                                                 <br /> {vote?.symbol}
-                                                <br /> {voteTime}
+                                                <br /> {serialNo}
                                             </p>
                                         </div>}
                                     </div>
@@ -172,33 +187,6 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                         </Col>
                     </Row>
                 </Container>
-                {/* <Button variant="primary" onClick={handleShowModal} style={{ position: 'absolute', top: '3%', left: '3%', width: '10%', backgroundColor: '#587a69', borderColor: '#587a69' }}>
-                    Help
-                </Button>
-
-                <div className="row">
-                    <div className="column side animate__animated animate__backInDown">
-                    <Printer/>
-                    </div>
-                    <div className="column side animate__animated animate__backInDown animate__delay-1s">
-                        <Ballot currentBallotID={currentBallotID}
-                            setCurrentBallotID={setCurrentBallotID}
-                            setHashList={setHashList}
-                            voterNumber={voterNumber} options={options} />
-                    </div>
-                    <div className="column side animate__animated animate__backInDown animate__delay-2s">
-                        <BallotEncryptions hashList={hashList} />
-                    </div>
-                </div>
-
-                <div className="d-flex justify-content-center mt-3">
-                    <button className="btn btn-dark mx-2" onClick={() => setIsNumberSelection(true)}>
-                        Back
-                    </button>
-                    <button className="btn btn-dark mx-2" onClick={() => setNext(true)} disabled={(hashList.length < voterNumber)}>
-                        Next
-                    </button>
-                </div> */}
             </>}
         </>
     );

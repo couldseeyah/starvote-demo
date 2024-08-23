@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../Printer.css';
 import { encryptArray } from '../../apiService';
 import QRCode from '../assets/qr_code.svg';
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function Printer({ voterNumber, options, isAnimating, setIsAnimating, currentBallotID, setCurrentBallotID, vote, setVote, encryption, setEncryption, voteTime, setVoteTime }) {
+export default function Printer({ voterNumber, setLoadingPrint, options, isAnimating, setIsAnimating, currentBallotID, setCurrentBallotID, vote, setVote, encryption, setEncryption, voteTime, setVoteTime, serialNo, setSerialNo }) {
 
     const [currentVote, setCurrentVote] = useState(null);
 
+    const generateSerialNumber = () => {
+        // Generate a random 6-digit serial number
+        return Math.floor(100000 + Math.random() * 900000);
+    }
 
     const getCurrentDateTime = () => {
         const now = new Date();
@@ -40,20 +44,16 @@ export default function Printer({ voterNumber, options, isAnimating, setIsAnimat
         }
     };
 
-    const handlePrint = async () => {
-
+    const handlePrint = async () => {        
         //setvariables
+
+        setLoadingPrint(true);
         setVote(currentVote);
         setVoteTime(getCurrentDateTime());
+        setSerialNo(generateSerialNumber());
         const encryptionResult = await getEncryption();
         setEncryption(encryptionResult);
         setCurrentVote(null);
-
-        console.log('currentVote ' + currentVote.name);
-
-        console.log('vote ' + vote);
-        console.log('encryption ' + encryption);
-        console.log('voteTime ' + voteTime);
 
         isAnimating ? setIsAnimating(false) : setIsAnimating(true);
     }
@@ -95,7 +95,7 @@ export default function Printer({ voterNumber, options, isAnimating, setIsAnimat
                             <h6>VOTE</h6>
                             <p><b>{vote?.name}</b></p>
                             <p style={{ fontSize: '1.5rem' }}>{vote?.symbol}</p>
-                            <p>{voteTime}</p>
+                            <p>Serial number: {serialNo}</p>
                         </>}
                     </div>
                     <div className="paper two">

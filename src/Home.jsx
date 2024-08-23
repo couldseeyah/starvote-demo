@@ -1,4 +1,4 @@
-import starIcon from '/wired-flat-237-star-rating.svg';
+import starIcon from '/green-star.svg';
 import { useEffect } from 'react';
 import { clearEncryptedObjects } from '../apiService';
 import 'animate.css';
@@ -20,11 +20,11 @@ export default function Home({ start, setStart }) {
     <div style={{border:'2px solid #aaa', borderRadius:'2rem', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)'}} className="animate__animated animate__backInDown">
       <div className="header">
         <div>
-          <a href="https://www.starvoting.org/star" target="_blank">
-            <img src={starIcon} className="logo react" alt="logo" />
+          <a href="https://www.researchgate.net/publication/256082508_STAR-Vote_A_Secure_Transparent_Auditable_and_Reliable_Voting_System_Volume_1_18-37" target="_blank">
+            <img style={{ width: '20%', height: '20%' }} src={starIcon} className="logo react" alt="logo" />
           </a>
         </div>
-        <h1>STAR Vote</h1>
+        <h1>STAR-Vote</h1>
       </div>
 
       <div className="row-home">

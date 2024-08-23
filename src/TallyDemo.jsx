@@ -13,12 +13,15 @@ export default function TallyDemo({ setStart, setNext, hashList, options }) {
     const [total, setTotal] = useState(0);
     const [encryptedTotal, setEncryptedTotal] = useState(null)
     const [showModal, setShowModal] = useState(true);
+    const [randomness, setRandomness] = useState(null);
 
     const getSum = async () => {
         try {
             const response = await homomorphicAdd();
             setTotal(response.result)
-            setEncryptedTotal(response.encrypted_result)
+            const eTotal = (response.encrypted_result).slice(0,16);
+            setEncryptedTotal(eTotal)
+            setRandomness(response.random)
         } catch (error) {
             console.error("Error fetching homomorphic addition result:", error);
             return null; // Return null or handle the error appropriately
@@ -41,7 +44,7 @@ export default function TallyDemo({ setStart, setNext, hashList, options }) {
                 Help
             </Button>
             <Instructions show={showModal} handleClose={handleCloseModal} imageSrc="/verify.png" heading="Verification Guide" />
-            <h1 className="header">ECP Bulletin Board 📌</h1>
+            <h1 className="header">Online ECP Bulletin Board 📌</h1>
             <div className="tally-demo-container">
                 <div className="clipboard-container animate__animated animate__backInDown">
                     <Bulletin total={total} hashList={hashList} />
@@ -50,7 +53,7 @@ export default function TallyDemo({ setStart, setNext, hashList, options }) {
                     <Tally total={total} options={options} encryptedTotal={encryptedTotal} />
                 </div>
                 <div className="verify-tally-container animate__animated animate__backInDown animate__delay-1s">
-                    <VerifyTally total={total} encryptedTotal={encryptedTotal} />
+                    <VerifyTally total={total} encryptedTotal={encryptedTotal} randomness={randomness}/>
                 </div>
             </div>
             <div className="d-flex justify-content-center mt-1">
