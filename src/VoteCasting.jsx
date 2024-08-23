@@ -120,7 +120,7 @@ export default function VoteCasting({ setNext, hashList, setHashList, options, v
                         <Col>
                             {currentBallotID == 2 &&
                                 <div style={{ position: 'absolute', top: '20%', zIndex: '5' }}>
-                                    <InstructionToast heading="Receipts 🧾" content="Receipts of casted votes. Voter keeps a physical copy. Election authorities keep a digital copy of these receipts." />
+                                    <InstructionToast heading="Receipts 🧾" content="Receipts of casted votes. Voters take the receipt home." />
                                 </div>
                             }
                             <div className="animate__animated animate__backInDown" style={{ position: 'relative', top: '1%' }}>
