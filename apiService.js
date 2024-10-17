@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000';  // flask server
+const API_URL = 'https://qudsia-project.onrender.com';  // flask server
 
 export const encryptArray = async (array) => {
     const response = await axios.post(`${API_URL}/encrypt`, { array });
